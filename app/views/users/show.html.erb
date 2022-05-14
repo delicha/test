@@ -23,10 +23,12 @@
     </div>
   </div>
 </div>
+
 <%# 測定ブロック %>
 <% if @user.id != current_user.id %>
-  <%# <%= link_to '測定する', new_evaluation_path(user_id: @user.id), class: "btn btn-info text-white mr-3" %> 
+  <%= link_to '測定する', new_evaluation_path(user_id: current_user.id, evaluatee_id: @user.id), class: "btn btn-info text-white mr-3" %> 
 <% end %>
+
 <%# 5ポイント以上でプロフチェック %>
 <% if current_user.point >= 5 && @user.id != current_user.id %>
   <div class="mt-4">
@@ -34,14 +36,16 @@
     <%= link_to 'いますぐチェック！', user_details_path(user_id: @user.id), method: :post, class: "btn btn-warning btn-lg text-white mb-45" %>
   </div>
 <% end %>
+
 <%# 印象ブロック %>
 <% if current_user.id == @user.id %>
   <%= render "impression" %>
 <% end %>
+
 <%# プロフの編集・削除 %>
 <% if current_user.id == @user.id || current_user.admin? %>
   <div class="text-center">
-    <%= link_to '編集する', edit_user_path, class: "btn btn-info text-white mb-3" %><br />
+    <%= link_to 'プロフィール編集', edit_user_path, class: "btn btn-info text-white mb-3" %><br />
     <%= link_to "退会する", @user, method: :delete, data: { confirm: "「#{@user.name}」さん、本当に退会しますか？"}, class: "small text-danger" %>
   </div>
 <% end %>

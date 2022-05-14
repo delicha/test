@@ -47,11 +47,10 @@ class UsersController < ApplicationController
 
   def details
     @user = User.find(params[:user_id])
-    @point = current_user.point
-    # byebug
-
+    
+    
+    @users = User.all
     lose_point
-    current_user.update!(point: @point)
     flash[:notice] = "5ポイント消化。(所持ポイント#{@point})"
   end
 
@@ -62,10 +61,6 @@ class UsersController < ApplicationController
                                  :generation, :point)
   end
 
-  def point_param
-    params.require(:user).permit(:point)
-  end
-
   def set_user
     @user = User.find(params[:id])
   end
@@ -74,17 +69,13 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless @user == current_user || current_user.admin?
   end
 
-  def gain_point
-    current_user.point += 1
-    current_user.update(point_param)
-    flash[:notice] = "1ポイント獲得。(所持ポイント#{current_user.point})"
-  end
-
   def lose_point
+    @point = current_user.point
     if @point > 5
       @point -= 5
     else
       @point = 0
     end
+    current_user.update!(point: @point)
   end
 end
