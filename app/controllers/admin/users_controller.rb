@@ -3,7 +3,8 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 5).order(updated_at: :DESC)
+    @q = User.all.ransack(params[:q])
+    @users = @q.result(distinct: true).paginate(page: params[:page], per_page: 5)
     @male = User.where(sex: 1)
     @female = User.where(sex: 0)
   end
@@ -48,7 +49,7 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation, :sex, :character, :hobby,
-                                 :generation, :point, :image)
+                                 :generation, :point, :image, :sub_image_1, :sub_image_2)
   end
 
   def set_user
