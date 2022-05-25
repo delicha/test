@@ -19,8 +19,5 @@ services:
 
   db:
     image: postgres
-    restart: always
-    volumes:
-      - db_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: postgrespassword
