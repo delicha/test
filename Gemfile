@@ -28,6 +28,7 @@ gem 'mini_magick'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'dotenv-rails', '2.7.6'
 
 gem 'faker'
 gem 'rails-i18n'
