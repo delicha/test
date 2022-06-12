@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    get '/evaluation', to: 'users#evaluation'
   end
 
   resources :users do
