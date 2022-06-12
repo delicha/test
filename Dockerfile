@@ -4,23 +4,16 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get update -qq \
   && apt-get install -y build-essential libpq-dev nodejs yarn postgresql-client
-WORKDIR /app
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+WORKDIR /myapp
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
-ADD . /app
-RUN mkdir -p tmp/sockets
 
-# Add a script to be executed every time the container starts.
+# コンテナー起動時に毎回実行されるスクリプトを追加
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
-# Expose volumes to frontend
-VOLUME /app/public
-VOLUME /app/tmp
-
-# Start Server
-# TODO: environment
-CMD bundle exec puma
+# イメージ実行時に起動させる主プロセスを設定
+CMD ["rails", "server", "-b", "0.0.0.0"]

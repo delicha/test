@@ -25,6 +25,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
+gem 'aws-sdk-s3', require: false
+gem 'active_storage_validations'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -35,6 +37,8 @@ gem 'rails-i18n'
 gem 'will_paginate', '3.3.1'
 gem 'will_paginate-bootstrap4'
 gem 'ransack'
+gem 'rails-html-sanitizer', '1.4.3'
+gem 'sassc', '2.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
