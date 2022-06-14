@@ -1,10 +1,8 @@
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 0,
     hobby: "テニス",
     character: "せっかち",
@@ -13,12 +11,11 @@
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
     admin: false,
     sex: 1,
     hobby: "サッカー",
@@ -28,12 +25,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
     admin: false,
     sex: 0,
     hobby: "ドライブ",
@@ -43,13 +39,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 1,
     hobby: "カラオケ",
     character: "悲観的",
@@ -58,13 +52,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 0,
     hobby: "Youtube",
     character: "社交的",
@@ -73,13 +65,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 1,
     hobby: "格闘技",
     character: "攻撃的",
@@ -88,13 +78,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 0,
     hobby: "寝る",
     character: "受け身",
@@ -103,13 +91,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 1,
     hobby: "なし",
     character: "無感情",
@@ -118,13 +104,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 0,
     hobby: "読書",
     character: "おせっかいやき",
@@ -133,13 +117,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 1,
     hobby: "釣り",
     character: "のんびり",
@@ -148,13 +130,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 0,
     hobby: "プラモデル",
     character: "頑固",
@@ -163,13 +143,11 @@ end
   )
 end
 
-2.times do |n|
+4.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.email,
     password: 'pass',
-    password_confirmation: 'pass',
-    admin: false,
     sex: 1,
     hobby: "料理",
     character: "受け身",
@@ -182,8 +160,6 @@ User.create!(
   name: "しょう",
   email: "sho@email.com",
   password: 'pass',
-  password_confirmation: 'pass',
-  admin: true,
   sex: 1,
   hobby: "料理",
   character: "受け身",
@@ -195,8 +171,6 @@ User.create!(
   name: "なつみ",
   email: "natsumi@email.com",
   password: 'pass',
-  password_confirmation: 'pass',
-  admin: false,
   sex: 0,
   hobby: "料理",
   character: "受け身",
@@ -208,8 +182,6 @@ User.create!(
   name: "ゆうちゃん",
   email: "yuchan@email.com",
   password: 'pass',
-  password_confirmation: 'pass',
-  admin: false,
   sex: 0,
   hobby: "ボクシング",
   character: "繊細",

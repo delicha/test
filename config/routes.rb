@@ -1,14 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
 
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  root to: 'home#index'
 
-  namespace :admin do
-    resources :users
-    get '/evaluation', to: 'users#evaluation'
-  end
+  devise_for :users
 
   resources :users do
     post :details

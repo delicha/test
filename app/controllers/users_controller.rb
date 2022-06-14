@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required, only: [:index, :new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :correct_user]
-  before_action :correct_user, only: [:create, :edit, :destroy]
 
   def index
     if current_user
@@ -68,8 +66,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation, :sex, :character, :hobby,
-                                 :generation, :point, :image, sub_images: [])
+    params.require(:user).permit(:name, :email, :admin, :password, :sex, :character, :hobby, :generation, :point, :image, sub_images: [])
   end
 
   def set_user
