@@ -187,8 +187,8 @@ User.create!(
   sex: 1,
   hobby: "料理",
   character: "受け身",
-  generation: 5,
-  point: 100,
+  generation: 3,
+  point: 10000,
 )
 
 User.create!(
@@ -197,11 +197,11 @@ User.create!(
   password: 'pass',
   password_confirmation: 'pass',
   admin: false,
-  sex: 1,
+  sex: 0,
   hobby: "料理",
   character: "受け身",
   generation: 0,
-  point: 100,
+  point: 10000,
 )
 
 User.create!(
@@ -213,6 +213,6 @@ User.create!(
   sex: 0,
   hobby: "ボクシング",
   character: "繊細",
-  generation: 3,
+  generation: 2,
   point: 0,
 )

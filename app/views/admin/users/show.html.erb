@@ -36,8 +36,11 @@
   <%= image_tag @user.sub_image_2.variant(resize: "300x300"), class: 'mb-3 rounded border' %>
 <% end %>
 
+<%# サブ画像ブロック %>
+<%= render "users/sub_pic" %>
+
 <%# 印象ブロック %>
-<%= render "impression" %>
+<%= render "users/impression" %>
 
 <%# プロフの編集・削除 %>
 <div class="text-center">
