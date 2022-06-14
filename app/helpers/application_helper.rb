@@ -24,76 +24,49 @@ module ApplicationHelper
   end
 
   def impression_comment(sex)
-    num = impression_total / 10
-    num = num.floor
-    ary = [
-      ['修行編エピソード１的な。','まずは自分磨きをしよう。', '自分が見えてないと思う。', 'イマイチかな。', 'まぁまぁかな。', 'やるな。', 'ストライク！', '文句なし！！', 'ヤバすぎ！！！', 'かわいいが渋滞してる！'],
-      ['あきめないで。', 'まずは自分磨きね。', 'まだ自分が見えてない。', '少し実力不足。', 'やるわね。', 'タイプ！', 'ストライク！', 'イケてる！！', 'ドキドキする！！！', 'カッコいいが渋滞してる！']
-    ]
-    ary[sex][num]
+    if impression_total != 'まだ評価はありません'
+      num = impression_total / 10
+      num = num.floor
+      num = num -1
+      ary = [
+        ['修行編エピソード１的な。','まずは自分磨きをしよう。', '自分が見えてないと思う。', 'イマイチかな。', 'まぁまぁかな。', 'やるな。', 'ストライク！', '文句なし！！', 'ヤバすぎ！！！', 'かわいいが渋滞してる！'],
+        ['あきめないで。', 'まずは自分磨きね。', 'まだ自分が見えてない。', '少し実力不足。', 'まずまずね。', 'タイプ！', 'ストライク！', 'イケてる！！', 'ドキドキする！！！', 'カッコいいが渋滞してる！']
+      ]
+      ary[sex][num]
+    else
+      ''
+    end
   end
 
-  # def impression_comment
-  #   if @sum >= 90
-  #     if @user.sex == 0
-  #       'かわいいが渋滞してる！'
-  #     else
-  #       'カッコいいが渋滞してる！'
-  #     end
-  #   elsif @sum >= 80
-  #     if @user.sex == 0
-  #       'ヤバすぎ！！！'
-  #     else
-  #       'ドキドキする！！！'
-  #     end
-  #   elsif @sum >= 70
-  #     if @user.sex == 0
-  #       '文句なし！！'
-  #     else
-  #       'イケてる！！'
-  #     end
-  #   elsif @sum >= 60
-  #     if @user.sex == 0
-  #       'ストライク！'
-  #     else
-  #       'タイプ！'
-  #     end
-  #   elsif @sum >= 50
-  #     if @user.sex == 0
-  #       'やるな。'
-  #     else
-  #       'やるわね。'
-  #     end
-  #   elsif @sum >= 40
-  #     if @user.sex == 0
-  #       'まぁまぁかな。'
-  #     else
-  #       'まぁまぁ。'
-  #     end
-  #   elsif @sum >= 30
-  #     if @user.sex == 0
-  #       'イマイチかな。'
-  #     else
-  #       '少し実力不足。'
-  #     end
-  #   elsif @sum >= 20
-  #     if @user.sex == 0
-  #       '自分が見えてないと思う。'
-  #     else
-  #       'まだ自分が見えてない。'
-  #     end
-  #   elsif @sum >= 10
-  #     if @user.sex == 0
-  #       'まずは自分磨きをしよう。'
-  #     else
-  #       'まずは自分磨きね。'
-  #     end
-  #   elsif @user.sex == 0
-  #     '修行編エピソード１的な。'
-  #   else
-  #     'あきめないで。'
-  #   end
-  # end
+  def impression_graph(num)
+    if impression_each_generation(num) != 'まだ評価はありません'
+      point = impression_each_generation(num) /10
+      point = point.round
+      if point == 10
+        '❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️'
+      elsif point >= 9
+        '❤️❤️❤️❤️❤️❤️❤️❤️❤️'
+      elsif point >= 8
+        '❤️❤️❤️❤️❤️❤️❤️❤️'
+      elsif point >= 7
+        '❤️❤️❤️❤️❤️❤️❤️'
+      elsif point >= 6
+        '❤️❤️❤️❤️❤️❤️'
+      elsif point >= 5
+        '❤️❤️❤️❤️❤️'
+      elsif point >= 4
+        '❤️❤️❤️❤️'
+      elsif point >= 3
+        '❤️❤️❤️'
+      elsif point >= 2
+        '❤️❤️'
+      else point >= 1
+        '❤️'
+      end
+    else
+      ''
+    end
+  end
 
   def user_demo_image
     if current_user.sex == 0

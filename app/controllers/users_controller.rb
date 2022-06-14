@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   def index
     if current_user
       @users = if current_user.sex == 0
-                 User.where(sex: 1).order('RANDOM()').paginate(page: params[:page], per_page: 8)
+                 User.where(sex: 1).order('updated_at DESC').paginate(page: params[:page], per_page: 6)
                else
-                 User.where(sex: 0).order('RANDOM()').paginate(page: params[:page], per_page: 8)
+                 User.where(sex: 0).order('updated_at DESC').paginate(page: params[:page], per_page: 6)
                end
     end
   end
@@ -33,12 +33,24 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to users_url, notice: "「#{@user.name}」さんはプロフィールを更新しました。"
-    else
-      render :edit
+    if params[:user][:sub_image_ids]
+      params[:user][:sub_image_ids].each do |sub_image_id|
+        sub_image = @user.sub_images.find(sub_image_id)
+        sub_image.purge
+      end
+    end
+
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: "「#{@user.name}」さんはプロフィールを更新しました。" }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
+
 
   def destroy
     @user.destroy
@@ -47,15 +59,17 @@ class UsersController < ApplicationController
 
   def details
     @user = User.find(params[:user_id])
-    lose_point
-    flash[:notice] = "5ポイント消化。(所持ポイント#{@point})"
+    if !current_user.admin
+      lose_point
+      flash[:notice] = "5ポイント消化。(所持ポイント#{@point})"
+    end
   end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation, :sex, :character, :hobby,
-                                 :generation, :point, :image, :sub_image_1, :sub_image_2)
+                                 :generation, :point, :image, sub_images: [])
   end
 
   def set_user
