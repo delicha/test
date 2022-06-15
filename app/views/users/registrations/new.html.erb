@@ -12,7 +12,6 @@
 
 <span class="small text-danger">※は必須項目</span>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
   <table class="table table-hover shadow-sm">
     <tbody>
       <tr>
@@ -41,11 +40,11 @@
       </tr>
       <tr>
         <th><%= f.label :hobby, '趣味', class: "text-muted" %></th>
-        <td><%= f.text_field :hobby, class: "form-control" %></td>
+        <td><%= f.text_field :hobby, placeholder: "(例) テニス、Youtube鑑賞 etc", class: "form-control" %></td>
       </tr>
       <tr>
         <th><%= f.label :character, '性格', class: "text-muted" %></th>
-        <td><%= f.text_field :character, class: "form-control" %></td>
+        <td><%= f.text_field :character, placeholder: "(例) 温和、我慢強い etc",class: "form-control" %></td>
       </tr>
       <tr>
         <th><%= f.label :generation, '世代', class: "text-muted" %><span class="small text-danger">※</span></th>
@@ -91,4 +90,3 @@
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
