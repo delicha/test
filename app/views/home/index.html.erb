@@ -1,5 +1,7 @@
-<% provide(:title, "トップページ") %>
 
+  <% provide(:title, "トップページ") %>
+
+  <%# メインイメージ %>
   <header class="ly_header">
     <div class="jumbotron main-visual">
       <h1 class="font-weight-bold text-dark">第一印象って大事</h1>
@@ -9,7 +11,7 @@
   </header>
   <h3 class="py-2">まずは登録！</h3>
   <p class="lead">
-    <%= link_to new_user_path, class: 'btn btn-warning btn-lg rounded-pill text-white font-weight-bold' do %>
+    <%= link_to new_user_registration_path, class: 'btn btn-warning btn-lg rounded-pill text-white font-weight-bold' do %>
       <i class="fa-solid fa-heart"></i>　さっそくはじめる
     <% end %>
   </p>
@@ -61,13 +63,13 @@
     </div>
 </div>
   
-<div>
-  <p>
-    <%= link_to login_path(name: "login"), class: 'btn btn-success rounded-pill text-white mt-4' do %><i class="fa-solid fa-right-to-bracket lead"></i>　ログイン<% end %>
-  </p>
-  <p class="lead">
-    <%= link_to new_user_path, class: 'btn btn-warning btn-lg rounded-pill text-white font-weight-bold' do %>
-      <i class="fa-solid fa-heart"></i>　さっそくはじめる
-    <% end %>
-  </p>
-</div>
+  <div>
+    <p>
+      <%= link_to new_user_session_path, class: 'btn btn-success rounded-pill text-white mt-4' do %><i class="fa-solid fa-right-to-bracket lead"></i>　ログイン<% end %>
+    </p>
+    <p class="lead">
+      <%= link_to new_user_registration_path, class: 'btn btn-warning btn-lg rounded-pill text-white font-weight-bold' do %>
+        <i class="fa-solid fa-heart"></i>　さっそくはじめる
+      <% end %>
+    </p>
+  </div>

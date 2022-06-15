@@ -9,6 +9,8 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 
+ENV PATH $PATH:/usr/local/src/bin
+
 # コンテナー起動時に毎回実行されるスクリプトを追加
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh

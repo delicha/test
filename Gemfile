@@ -39,6 +39,7 @@ gem 'ransack'
 gem 'rails-html-sanitizer', '1.4.3'
 gem 'sassc', '2.1.0'
 gem 'devise'
+gem 'devise-i18n'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

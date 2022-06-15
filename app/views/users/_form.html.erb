@@ -1,18 +1,12 @@
-<% provide(:title, "まずはプロフィールを作成！") %>
-
-<p class="lead mb-3"><%= yield(:title) %></p>
-
 <% if @user.errors %>
   <ul id="error_explanation">
-    <% @user.errors.full_messages.each do |message| %>
+    <% user.errors.full_messages.each do |message| %>
       <li class="text-danger"><%= message %></li>
     <% end %>
   </ul>
 <% end %>
-
 <span class="small text-danger">※は必須項目</span>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+<%= form_with model: @user, class: "mx-3", local: true do |f| %>
   <table class="table table-hover shadow-sm">
     <tbody>
       <tr>
@@ -21,19 +15,15 @@
       </tr>
       <tr>
         <th><%= f.label :email, 'メールアドレス', class: "text-muted" %><span class="small text-danger">※</span></th>
-        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+        <td><%= f.email_field :email, class: "form-control" %></td>
       </tr>
       <tr>
-        <th><%= f.label :password, 'パスワード', class: "text-muted" %><span class="small text-danger">※<br />
-          <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> 文字以上)</em>
-          <% end %>
-        </span></th>
-        <td><%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></td>
+        <th><%= f.label :password, 'パスワード', class: "text-muted" %><span class="small text-danger">※</span></th>
+        <td><%= f.password_field :password, class: "form-control" %></td>
       </tr>
       <tr>
         <th><%= f.label :password_confirmation, 'パスワード（確認）', class: "text-muted" %><span class="small text-danger">※</span></th>
-        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
+        <td><%= f.password_field :password_confirmation, class: "form-control" %></td>
       </tr>
       <tr>
         <th><%= f.label :sex, '性別', class: "text-muted" %><span class="small text-danger">※</span></th>
@@ -55,7 +45,7 @@
         <th><%= f.label :image, 'トップ画像', class: "text-muted" %><span class="small text-danger">※</span></th>
         <td>
           <%= f.file_field :image, class: "form-control" %>
-          <% if @user.image.attached? %>
+          <% if user.image.attached? %>
             <div class="d-flex justify-content-start mt-2">
               <%= image_tag user.image.variant(resize: "30x30"), class:'px-2' %><span class="small">選択画像</span>
             </div>
@@ -68,7 +58,7 @@
         <th><%= f.label :sub_images, 'サブ画像', class: "text-muted" %><br /><span class="small text-danger">(サブ画像は２枚まで選択可)</span></th>
         <td>
           <%= f.file_field :sub_images, multiple: true, class: "form-control" %>
-          <% if @user.sub_images.attached? %>
+          <% if user.sub_images.attached? %>
             <div class="d-flex justify-content-start mt-2">
               <% @user.sub_images.each do |sub_image| %>
                 <%= f.check_box :sub_image_ids, { multiple: true }, sub_image.id, false %>
@@ -90,5 +80,3 @@
     <%= f.submit '登録する', class: "btn btn-info rounded-pill" %>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
